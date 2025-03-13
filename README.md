@@ -8,9 +8,9 @@ This project is a **Genshin API Puller** that retrieves character data using the
 - No `cURL` required (yet).
 
 ## Technologies Used
-- **PHP**: Handles API requests and backend logic.
-- **Bootstrap**: Provides a responsive and modern frontend design.
-- **Genshin Dev API**: The data source for Genshin Impact characters.
+- **PHP**: API requests and backend logic.
+- **Bootstrap**: Frontend design.
+- **Genshin Dev API**: Data source for Genshin Impact characters and other info.
 
 ## Future Updates
 🚧 **This project is still under development!** 🚧  
