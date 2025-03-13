@@ -44,11 +44,22 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 Characters
             </a>
         </li>
+        <li>
+            <a href="<?= BASE_URL ?>materials.php"
+                class="nav-link <?php echo ($currentPage == 'materials.php') ? 'active' : 'text-white'; ?>">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                    fill="#e8eaed">
+                    <path
+                        d="M200-80q-33 0-56.5-23.5T120-160v-451q-18-11-29-28.5T80-680v-120q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v120q0 23-11 40.5T840-611v451q0 33-23.5 56.5T760-80H200Zm0-520v440h560v-440H200Zm-40-80h640v-120H160v120Zm200 280h240v-80H360v80Zm120 20Z" />
+                </svg>
+                Materials
+            </a>
+        </li>
 
         <hr>
 
         <!-- Debug for testing the directory of the pages. Disregard -->
-         
+
         <!-- <li>
             <a href="<?= BASE_URL ?>debug/debug.php"
                 class="nav-link <?php echo ($currentPage == 'debug.php') ? 'active' : 'text-white'; ?>">
@@ -100,66 +111,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
             <!-- use this if you have a login page -->
 
-            <!-- <li><a class="dropdown-item" href="<?= BASE_URL ?>logout.php">Sign out</a></li> -->
-
-            <li><button class="dropdown-item" id="notAvail" data-toggle="modal" data-target="#m_troll">Sign
-                    out</button></li>
-            <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Launch demo modal
-                </button></li>
+            <li><a class="dropdown-item" href="<?= BASE_URL ?>logout.php">Sign out</a></li>
         </ul>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="notAvail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-        </div>
     </div>
 </div>
 

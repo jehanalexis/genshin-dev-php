@@ -9,13 +9,15 @@ $pageTitle = "Dashboard";
             <p class="">Welcome, Test User!</p>
         </div>
     </div>
-    
+
 </div>
 
-<div class="row">
-    <h4>This project is possible because of <a href="https://github.com/genshindev/api" target="_blank">Genshin Dev API</a> and Bootstrap 5</h4>
+<div class="row m-0">
+    <h4>This project is possible because of <a href="https://github.com/genshindev/api" target="_blank">Genshin Dev
+            API</a> and Bootstrap 5</h4>
     <span>I will add more features.</span>
     <span>Made with 💗 by jehanalexis</span>
 </div>
+
 
 <?php include('includes/footer.php'); ?>
