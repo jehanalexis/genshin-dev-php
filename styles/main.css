@@ -41,6 +41,17 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+select {
+    text-align: center;
+    text-align-last: center;
+}
+
+optgroup {
+    font-weight: bold;
+    text-align: left;
+}
+
+
 @media (max-width: 850px) {
     .main-content {
         max-width: 100% !important;

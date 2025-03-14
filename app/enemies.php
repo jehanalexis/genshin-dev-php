@@ -1,22 +1,21 @@
 <?php
 include('includes/header.php');
-$pageTitle = "Characters"; // Page Title... DUH!!!
-$modalTitle = "Character"; // Title when you open the modal
+$pageTitle = "Enemies"; // Page Title... DUH!!!
+$modalTitle = "Enemy"; // Title when you open the modal
 
-$category = "characters"; // MUST BE LOWERCASE! Define the field for the search bar and data-image="https://genshin.jmp.blue/ $category / If the image doesn't show, try changing the $data from 'name' to 'id'
-$apiUrl = "https://genshin.jmp.blue/characters/all?lang=en";
+$category = "enemies"; // MUST BE LOWERCASE! Define the field for the search bar and data-image="https://genshin.jmp.blue/ $category / If the image doesn't show, try changing the $data from 'name' to 'id'
+$apiUrl = "https://genshin.jmp.blue/enemies/all?lang=en";
 $dataList = json_decode(@file_get_contents($apiUrl), true) ?? [];
 
 // Define all the needed attributes here from the API
-$fields = ['name', 'title', 'vision', 'weapon', 'gender', 'nation', 'affiliation', 'rarity', 'release', 'constellation', 'birthday', 'description'];
+$fields = ['name', 'region', 'type', 'family', 'description'];
 
 // Query for the search and sort
 $searchQuery = strtolower(trim($_GET['search'] ?? ""));
 $sortBy = $_GET['sort'] ?? "";
 
 $options = [ // You can define what options are available for sorting (dropdown)
-    "Nation" => ["Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine", "Natlan"],
-    "Element" => ["Anemo", "Pyro", "Hydro", "Geo", "Electro", "Cryo", "Dendro"]
+    "Type" => ["Common Enemies", "Elite Enemies", "Unique Enemies"]
 ];
 
 // Search Magic
@@ -24,8 +23,8 @@ if ($searchQuery) {
     $dataList = array_filter($dataList, fn($char) => stripos($char['name'], $searchQuery) !== false);
 }
 
-if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
-    $dataList = array_filter($dataList, fn($char) => ($char['nation'] ?? '') === $sortBy || ($char['vision'] ?? '') === $sortBy);
+if (in_array($sortBy, array_merge($options["Type"]))) {
+    $dataList = array_filter($dataList, fn($char) => ($char['type'] ?? '') === $sortBy || ($char['vision'] ?? '') === $sortBy);
 }
 ?>
 
@@ -33,7 +32,7 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
     <div class="container-fluid">
         <div class="row">
             <h2 class="mb-0"><strong><?= $pageTitle ?></strong></h2>
-            <p class="mb-2">Characters List</p>
+            <p class="mb-2">Enemy List</p>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNav"
@@ -60,7 +59,6 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
                         <?php endforeach; ?>
                     </select>
 
-
                     <!-- Optional Search Button -->
                     <!-- <button class="btn btn-primary" type="submit">Search</button> -->
                 </div>
@@ -72,10 +70,11 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
 <table class="table">
     <thead class="tbl_thead">
         <tr>
-            <th>#</th>
-            <th>Vision</th>
+            <th class="tbl_id">#</th>
             <th>Name</th>
-            <th>Nation</th>
+            <th>Region</th>
+            <th>Type</th>
+            <th>Family</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -84,9 +83,10 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
             <?php foreach ($dataList as $index => $data): ?>
                 <tr>
                     <th><?= $index + 1 ?></th>
-                    <td><?= $data['vision'] ?? 'Unknown' ?></td>
-                    <td><?= $data['name'] ?></td>
-                    <td><?= $data['nation'] ?? 'Unknown' ?></td>
+                    <td><?= $data['name'] ?? 'Unknown' ?></td>
+                    <td><?= $data['region'] ?></td>
+                    <td><?= $data['type'] ?? 'Unknown' ?></td>
+                    <td><?= $data['family'] ?? 'Unknown' ?></td>
                     <td>
                         <button class="btn btn-primary view-modal-btn" data-bs-toggle="modal" data-bs-target="#viewModal" <?php
                         foreach ($fields as $field):
@@ -94,7 +94,7 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
                             echo " data-{$field}=\"{$value}\"";
                         endforeach;
                         ?>
-                            data-image="https://genshin.jmp.blue/<?= $category ?>/<?= strtolower(str_replace(' ', '-', $data['name'])) ?>/card">
+                            data-image="https://genshin.jmp.blue/<?= $category ?>/<?= strtolower(str_replace(' ', '-', $data['name'])) ?>/portrait">
                             View
                         </button>
                     </td>
@@ -102,7 +102,7 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="5">No Characters found.</td>
+                <td colspan="5">No Enemies found.</td>
             </tr>
         <?php endif; ?>
     </tbody>
@@ -142,6 +142,3 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
         });
     });
 </script>
-
-
-<?php include('includes/footer.php'); ?>
