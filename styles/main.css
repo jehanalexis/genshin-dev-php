@@ -20,6 +20,11 @@ svg path {
     text-align: left;
 }
 
+.td-no-data {
+    text-align: center;
+    justify-content: center;
+}
+
 ::-webkit-scrollbar {
     width: 6px;
 }

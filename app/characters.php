@@ -102,7 +102,7 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="5">No Characters found.</td>
+                <td colspan="5" class="td-no-data">No Characters found.</td>
             </tr>
         <?php endif; ?>
     </tbody>
@@ -118,11 +118,11 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
             </div>
             <div class="modal-body row">
                 <div class="col-md-4 text-center">
-                    <img id="characterImage" class="img-fluid rounded" alt="No Image found for this entity." width="250">
+                    <img id="entityImage" class="img-fluid rounded" alt="No Image found for this entity." width="250">
                 </div>
                 <div class="col-md-8">
                     <?php foreach ($fields as $field): ?>
-                        <p><strong><?= ucfirst($field) ?>:</strong> <span id="character<?= ucfirst($field) ?>"></span></p>
+                        <p><strong><?= ucfirst($field) ?>:</strong> <span id="fieldText<?= ucfirst($field) ?>"></span></p>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -136,9 +136,9 @@ if (in_array($sortBy, array_merge($options["Nation"], $options["Element"]))) {
         const fields = <?= json_encode($fields) ?>;
         button.addEventListener('click', function () {
             fields.forEach(field => {
-                document.getElementById(`character${field.charAt(0).toUpperCase() + field.slice(1)}`).textContent = this.getAttribute(`data-${field}`);
+                document.getElementById(`fieldText${field.charAt(0).toUpperCase() + field.slice(1)}`).textContent = this.getAttribute(`data-${field}`);
             });
-            document.getElementById('characterImage').src = this.getAttribute('data-image');
+            document.getElementById('entityImage').src = this.getAttribute('data-image');
         });
     });
 </script>
